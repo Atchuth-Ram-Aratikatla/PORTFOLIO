@@ -74,15 +74,27 @@ export const SkillsAndTools: React.FC = () => {
   return (
     <section id="skills" className="relative py-24 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header with Frosted Glass Capsule & Blurred Border Cushion */}
-        <div className="text-center max-w-3xl mx-auto mb-16 p-6 sm:p-8 rounded-2xl bg-[#1f150c]/95 border border-[#412d15] backdrop-blur-2xl shadow-[0_0_24px_3px_rgba(0,0,0,0.95),0_12px_40px_rgba(0,0,0,0.95),inset_0_0_20px_rgba(0,0,0,0.7)]">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1f150c] border border-[#412d15] text-[#e1dcc9] text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm">
+        {/* Free-Floating Section Header with Faded Ambient Blur (No box, no borders) */}
+        <div className="relative text-center max-w-3xl mx-auto mb-16 px-4 py-6 pointer-events-auto">
+          {/* Faded ambient background blur cushion directly behind the header content */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 -z-10 pointer-events-none rounded-3xl"
+            style={{
+              background: 'radial-gradient(ellipse 75% 65% at 50% 50%, rgba(0,0,0,0.82) 0%, rgba(31,21,12,0.55) 45%, rgba(0,0,0,0.2) 70%, transparent 100%)',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              maskImage: 'radial-gradient(ellipse 80% 70% at 50% 50%, black 40%, transparent 100%)',
+              WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 50% 50%, black 40%, transparent 100%)',
+            }}
+          />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1f150c]/80 border border-[#412d15]/80 text-[#e1dcc9] text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm backdrop-blur-sm">
             <Cpu className="w-3.5 h-3.5 text-[#e1dcc9]" /> Verified Technical & Operational Tooling
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-4 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
             Core Competencies & Tool Ecosystem
           </h2>
-          <p className="text-[#c5beab] text-base sm:text-lg leading-relaxed">
+          <p className="text-[#c5beab] text-base sm:text-lg leading-relaxed drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
             Documented operational fluency across enterprise scheduling, Agile Scrum delivery, business intelligence, brokerage management systems, and cross-functional collaboration suites.
           </p>
         </div>
