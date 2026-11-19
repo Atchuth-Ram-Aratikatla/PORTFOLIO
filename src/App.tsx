@@ -18,7 +18,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0c0705] text-[#f7ede2] selection:bg-[#99582a] selection:text-[#ffe6a7]">
+    <div className="min-h-screen bg-[#000000] text-[#e1dcc9] selection:bg-[#412d15] selection:text-[#e1dcc9]">
       {/* Sticky Navigation with Frosted Blur Header */}
       <Navbar onOpenContact={scrollToContact} />
 
@@ -31,8 +31,8 @@ export default function App() {
           {/* Sticky Viewport-Sized Moonlit Petals Ambient Background */}
           <div className="sticky top-0 h-screen w-full pointer-events-none -mb-[100vh] z-0 overflow-hidden">
             <MoonlitPetals
-              background="#0c0705"
-              blossomColor="#ffe6a7"
+              background="#000000"
+              blossomColor="#e1dcc9"
               speed={45}
               petals={170}
               wind={28}
@@ -41,8 +41,8 @@ export default function App() {
               glow={70}
               advanced={{
                 petalColor: "#ffffff",
-                branchColor: "#432818",
-                hazeColor: "#0c0705",
+                branchColor: "#412d15",
+                hazeColor: "#000000",
                 hazeOpacity: 15,
                 highlight: 100,
                 fallSpeed: 85,
@@ -62,7 +62,7 @@ export default function App() {
           {/* Sections Layer Sitting Over Ambient Background (Transparent to keep background 100% visible) */}
           <div className="relative z-10">
             {/* Smooth Inflow Atmospheric Gradient from Hero into Moonlit Petals */}
-            <div className="absolute top-0 left-0 right-0 h-44 bg-gradient-to-b from-[#0c0705] via-[#0c0705]/80 to-transparent pointer-events-none -z-1" />
+            <div className="absolute top-0 left-0 right-0 h-44 bg-gradient-to-b from-[#000000] via-[#000000]/80 to-transparent pointer-events-none -z-1" />
 
             {/* Quantified Impact Dashboard */}
             <ImpactDashboard />

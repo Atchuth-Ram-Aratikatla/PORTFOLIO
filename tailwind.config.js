@@ -8,42 +8,43 @@ export default {
   theme: {
   	extend: {
   		colors: {
-  			background: '#0c0705',
-  			card: '#160d09',
-  			cardBorder: 'rgba(187, 148, 87, 0.15)',
+  			background: '#000000',
+  			card: '#1f150c',
+  			cardBorder: 'rgba(65, 45, 21, 0.6)',
   			luxury: {
-  				wine: '#6f1d1b',
-  				wineDark: '#4a1110',
-  				gold: '#bb9457',
-  				goldLight: '#d6b37c',
-  				chocolate: '#432818',
-  				chocolateDark: '#29180e',
-  				bronze: '#99582a',
-  				bronzeLight: '#b86d37',
-  				cream: '#ffe6a7',
-  				creamLight: '#fff2d4',
-  				ground: '#0c0705',
-  				surface: '#170e0a',
-  				surfaceLight: '#241610',
-  				border: '#3b2315',
-  				borderLight: '#593621'
+  				wine: '#412d15',
+  				wineDark: '#1f150c',
+  				gold: '#412d15',
+  				goldLight: '#e1dcc9',
+  				chocolate: '#1f150c',
+  				chocolateDark: '#140d07',
+  				bronze: '#412d15',
+  				bronzeLight: '#634724',
+  				cream: '#e1dcc9',
+  				creamLight: '#f2eee3',
+  				ground: '#000000',
+  				surface: '#1f150c',
+  				surfaceLight: '#2a1d11',
+  				border: '#412d15',
+  				borderLight: '#5c4120',
+  				muted: '#a89f91'
   			},
   			accent: {
-  				gold: '#bb9457',
-  				cream: '#ffe6a7',
-  				bronze: '#99582a',
-  				wine: '#6f1d1b',
-  				blue: '#bb9457',
-  				electric: '#99582a',
-  				cyan: '#ffe6a7',
-  				teal: '#bb9457'
+  				gold: '#e1dcc9',
+  				cream: '#e1dcc9',
+  				bronze: '#412d15',
+  				wine: '#412d15',
+  				blue: '#e1dcc9',
+  				electric: '#412d15',
+  				cyan: '#e1dcc9',
+  				teal: '#e1dcc9'
   			},
   			brand: {
-  				navy: '#0c0705',
-  				charcoal: '#170e0a',
-  				surface: '#1f130c',
-  				surfaceLight: '#2c1b12',
-  				muted: '#bfae9c'
+  				navy: '#000000',
+  				charcoal: '#1f150c',
+  				surface: '#1f150c',
+  				surfaceLight: '#2a1d11',
+  				muted: '#a89f91'
   			}
   		},
   		fontFamily: {

@@ -421,7 +421,7 @@ void main() {
 let parseCtx: CanvasRenderingContext2D | null | undefined
 
 function toRGB(css: string): [number, number, number] {
-    if (!css || css === "transparent") return [0.047, 0.027, 0.020]
+    if (!css || css === "transparent") return [0.0, 0.0, 0.0]
     const s = css.trim()
     const hex = /^#([0-9a-f]{3,8})$/i.exec(s)
     if (hex) {
@@ -1038,7 +1038,7 @@ export function MarbleSprite({
 }
 
 const __originkitPresetProps = {
-    spriteColor: "#bb9457",
+    spriteColor: "#6e4d25",
     background: "transparent",
 }
 
