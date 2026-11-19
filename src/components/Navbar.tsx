@@ -74,11 +74,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
         {/* Action CTAs */}
         <div className="hidden sm:flex items-center gap-3">
           <a
-            href={CANDIDATE.contact.resumeDownloadUrl}
-            target={CANDIDATE.contact.resumeDownloadUrl.startsWith('http') ? '_blank' : undefined}
-            rel={CANDIDATE.contact.resumeDownloadUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
-            download={!CANDIDATE.contact.resumeDownloadUrl.startsWith('http') ? 'Atchuth_Ram_Aratikatla_PMP_Resume.pdf' : undefined}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-[#e1dcc9] bg-[#1f150c] hover:bg-[#2a1d11] border border-[#412d15] rounded-lg transition-all shadow-sm hover:text-white"
+            href="/Atchuth_Ram_Aratikatla_Master_Resume.pdf"
+            download="Atchuth_Ram_Aratikatla_Master_Resume.pdf"
+            title="Directly Download Master Resume (PDF)"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-[#e1dcc9] bg-[#1f150c] hover:bg-[#2a1d11] border border-[#412d15] rounded-lg transition-all shadow-sm hover:text-white cursor-pointer active:scale-98"
           >
             <FileText className="w-3.5 h-3.5 text-[#e1dcc9]" />
             Resume
@@ -127,14 +126,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
           <div className="pt-3 border-t border-[#412d15] flex flex-col gap-2">
             <a
-              href={CANDIDATE.contact.resumeDownloadUrl}
-              target={CANDIDATE.contact.resumeDownloadUrl.startsWith('http') ? '_blank' : undefined}
-              rel={CANDIDATE.contact.resumeDownloadUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
-              download={!CANDIDATE.contact.resumeDownloadUrl.startsWith('http') ? 'Atchuth_Ram_Aratikatla_PMP_Resume.pdf' : undefined}
-              className="flex items-center justify-center gap-2 py-2 text-sm font-semibold text-[#e1dcc9] bg-[#1f150c] border border-[#412d15] rounded-lg"
+              href="/Atchuth_Ram_Aratikatla_Master_Resume.pdf"
+              download="Atchuth_Ram_Aratikatla_Master_Resume.pdf"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-center gap-2 py-2 text-sm font-semibold text-[#e1dcc9] bg-[#1f150c] border border-[#412d15] rounded-lg hover:bg-[#2a1d11] transition-colors"
             >
               <FileText className="w-4 h-4 text-[#e1dcc9]" />
-              Download Resume
+              Download Master Resume
             </a>
             <a
               href="#contact"

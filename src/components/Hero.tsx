@@ -86,32 +86,33 @@ export const Hero: React.FC = () => {
 
             {/* Primary & Secondary Call to Actions */}
             <div className="relative z-20 flex flex-wrap items-center justify-start gap-4 sm:gap-5 mb-4 pointer-events-auto">
-              <a href="#case-studies" className="inline-block">
+              {/* Primary Action: Master Resume with OrbitBorderButton */}
+              <a
+                href={CANDIDATE.contact.resumeDownloadUrl}
+                download="Atchuth_Ram_Aratikatla_Master_Resume.pdf"
+                className="inline-block"
+                title="Download Master Resume (PDF)"
+              >
                 <OrbitBorderButton
-                  label="Explore Strategic Case Studies"
+                  label="Master Resume"
                   fill="#1f150c"
                   textColor="#e1dcc9"
                   cometColor="#e1dcc9"
                   glowColor="#412d15"
-                  width={250}
+                  width={220}
                   height={50}
                   style={{ fontWeight: 600, fontSize: '14px' }}
                 />
               </a>
 
-              <a
-                href={CANDIDATE.contact.resumeDownloadUrl}
-                target={CANDIDATE.contact.resumeDownloadUrl.startsWith('http') ? '_blank' : undefined}
-                rel={CANDIDATE.contact.resumeDownloadUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
-                download={!CANDIDATE.contact.resumeDownloadUrl.startsWith('http') ? 'Atchuth_Ram_Aratikatla_PMP_Resume.pdf' : undefined}
-                className="inline-block"
-              >
+              {/* Secondary Action: Explore Strategic Case Studies with EncryptButton */}
+              <a href="#case-studies" className="inline-block" title="Explore Strategic Case Studies">
                 <EncryptButton
-                  label="Master Resume (Drive)"
+                  label="Explore Strategic Case Studies"
                   fill="#1f150c"
                   textColor="#e1dcc9"
                   hoverTextColor="#ffffff"
-                  paddingX={26}
+                  paddingX={24}
                   paddingY={13}
                   rounded={12}
                   border={true}

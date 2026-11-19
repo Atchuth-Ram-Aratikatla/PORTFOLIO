@@ -623,7 +623,7 @@ export const CANDIDATE = {
     alternateEmail: 'atchuth.aratikatla@gmail.com',
     phone: '+91 90412 15758',
     linkedin: 'https://www.linkedin.com/in/atchuth-ram-aratikatla/',
-    resumeDownloadUrl: '/Atchuth_Ram_Aratikatla_PMP_Resume.pdf',
+    resumeDownloadUrl: '/Atchuth_Ram_Aratikatla_Master_Resume.pdf',
   },
   impactMetrics: [
     {
