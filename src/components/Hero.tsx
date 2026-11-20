@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { CANDIDATE } from '../data/candidate';
 import DigitalRainCurtain from './originkit/DigitalRainCurtain';
 import FocusReveal from './originkit/FocusReveal';
-import OrbitBorderButton from './originkit/OrbitBorderButton';
 import EncryptButton from './originkit/EncryptButton';
+import { FileText, ChevronDown } from 'lucide-react';
 
 export const Hero: React.FC = () => {
+  const [resumeDropdownOpen, setResumeDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setResumeDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
   return (
     <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-[#000000] pt-28 pb-16 isolate">
       {/* Background Digital Rain Curtain (ArgentCloudburst) - in same blending stacking context */}
@@ -82,25 +94,75 @@ export const Hero: React.FC = () => {
           </p>
 
           {/* Primary & Secondary Call to Actions */}
-          <div className="relative z-20 flex flex-wrap items-center justify-center gap-4 sm:gap-5 mb-4 pointer-events-auto">
-            {/* Primary Action: Master Resume with OrbitBorderButton */}
-            <a
-              href={CANDIDATE.contact.resumeDownloadUrl}
-              download="Atchuth_Ram_Aratikatla_Master_Resume.pdf"
-              className="inline-block"
-              title="Download Master Resume (PDF)"
-            >
-              <OrbitBorderButton
-                label="Master Resume"
-                fill="#1f150c"
-                textColor="#e1dcc9"
-                cometColor="#e1dcc9"
-                glowColor="#412d15"
-                width={220}
-                height={50}
-                style={{ fontWeight: 600, fontSize: '14px' }}
-              />
-            </a>
+          <div
+            className={`relative z-30 flex flex-wrap items-center justify-center gap-4 sm:gap-5 pointer-events-auto transition-all duration-300 ease-in-out ${
+              resumeDropdownOpen ? 'mb-36 sm:mb-36' : 'mb-4'
+            }`}
+          >
+            {/* Primary Action: Master Resume with identical EncryptButton & Dropdown */}
+            <div className="relative inline-block" ref={dropdownRef}>
+              <div
+                onClick={() => setResumeDropdownOpen((prev) => !prev)}
+                className="cursor-pointer transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                title="Select Resume Document"
+                aria-expanded={resumeDropdownOpen}
+                aria-haspopup="true"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setResumeDropdownOpen((prev) => !prev);
+                  }
+                }}
+              >
+                <EncryptButton
+                  label="Master Resume"
+                  fill="#1f150c"
+                  textColor="#e1dcc9"
+                  hoverTextColor="#ffffff"
+                  paddingX={24}
+                  paddingY={13}
+                  rounded={12}
+                  border={true}
+                  borderOptions={{ color: '#412d15', width: 1 }}
+                  sweepOptions={{ color: '#e1dcc9', speed: 8, count: 2, width: 12 }}
+                  font={{ fontSize: 14, fontWeight: 600 }}
+                />
+              </div>
+
+              {/* Minimal Clean Dropdown Menu */}
+              {resumeDropdownOpen && (
+                <div
+                  className="absolute left-1/2 -translate-x-1/2 top-full mt-3 w-64 rounded-xl bg-[#1f150c] border border-[#412d15] shadow-[0_20px_45px_rgba(0,0,0,0.95),0_0_20px_rgba(65,45,21,0.4)] backdrop-blur-xl py-1.5 z-50 animate-in fade-in zoom-in-95 duration-150"
+                  role="menu"
+                >
+                  <a
+                    href="/Atchuth_Ram_Aratikatla_Resume_1Page.pdf"
+                    download="Atchuth_Ram_Aratikatla_Resume_1Page.pdf"
+                    onClick={() => setResumeDropdownOpen(false)}
+                    className="flex items-center gap-2.5 px-4 py-3 text-sm font-semibold text-[#e1dcc9] hover:text-white hover:bg-[#412d15]/60 transition-colors text-left group"
+                    role="menuitem"
+                  >
+                    <FileText className="w-4 h-4 text-[#e1dcc9] group-hover:text-white shrink-0" />
+                    <span>Condensed 1-Page Resume</span>
+                  </a>
+
+                  <div className="border-t border-[#412d15]/80 my-1" />
+
+                  <a
+                    href="/Atchuth_Ram_Aratikatla_Resume.pdf"
+                    download="Atchuth_Ram_Aratikatla_Resume.pdf"
+                    onClick={() => setResumeDropdownOpen(false)}
+                    className="flex items-center gap-2.5 px-4 py-3 text-sm font-semibold text-[#e1dcc9] hover:text-white hover:bg-[#412d15]/60 transition-colors text-left group"
+                    role="menuitem"
+                  >
+                    <FileText className="w-4 h-4 text-[#e1dcc9] group-hover:text-white shrink-0" />
+                    <span>Full 2-Page Resume</span>
+                  </a>
+                </div>
+              )}
+            </div>
 
             {/* Secondary Action: Explore Strategic Case Studies with EncryptButton */}
             <a href="#case-studies" className="inline-block" title="Explore Strategic Case Studies">

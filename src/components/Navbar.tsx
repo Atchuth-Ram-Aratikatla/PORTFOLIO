@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { CANDIDATE } from '../data/candidate';
-import { ShieldCheck, MapPin, Menu, X, FileText, Send } from 'lucide-react';
+import { ShieldCheck, MapPin, Menu, X, FileText, Send, ChevronDown } from 'lucide-react';
 
 interface NavbarProps {
   onOpenContact?: () => void;
@@ -9,6 +9,8 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [resumeDropdownOpen, setResumeDropdownOpen] = useState(false);
+  const resumeDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +18,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (resumeDropdownRef.current && !resumeDropdownRef.current.contains(event.target as Node)) {
+        setResumeDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   const navLinks = [
@@ -73,15 +85,56 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
         {/* Action CTAs */}
         <div className="hidden sm:flex items-center gap-3">
-          <a
-            href="/Atchuth_Ram_Aratikatla_Master_Resume.pdf"
-            download="Atchuth_Ram_Aratikatla_Master_Resume.pdf"
-            title="Directly Download Master Resume (PDF)"
-            className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-[#e1dcc9] bg-[#1f150c] hover:bg-[#2a1d11] border border-[#412d15] rounded-lg transition-all shadow-sm hover:text-white cursor-pointer active:scale-98"
-          >
-            <FileText className="w-3.5 h-3.5 text-[#e1dcc9]" />
-            Resume
-          </a>
+          {/* Desktop Resume Dropdown */}
+          <div className="relative inline-block" ref={resumeDropdownRef}>
+            <button
+              type="button"
+              onClick={() => setResumeDropdownOpen((prev) => !prev)}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-[#e1dcc9] bg-[#1f150c] hover:bg-[#2a1d11] border border-[#412d15] hover:border-[#e1dcc9]/50 rounded-lg transition-all shadow-sm hover:text-white cursor-pointer active:scale-98"
+              aria-expanded={resumeDropdownOpen}
+              aria-haspopup="true"
+            >
+              <FileText className="w-3.5 h-3.5 text-[#e1dcc9]" />
+              <span>Resume</span>
+              <ChevronDown
+                className={`w-3 h-3 text-[#e1dcc9] transition-transform duration-200 ${
+                  resumeDropdownOpen ? 'rotate-180' : ''
+                }`}
+              />
+            </button>
+
+            {/* Dropdown Menu */}
+            {resumeDropdownOpen && (
+              <div
+                className="absolute right-0 top-full mt-2 w-56 rounded-xl bg-[#1f150c] border border-[#412d15] shadow-[0_15px_35px_rgba(0,0,0,0.9),0_0_20px_rgba(65,45,21,0.4)] backdrop-blur-xl py-1.5 z-50 animate-in fade-in zoom-in-95 duration-150"
+                role="menu"
+              >
+                <a
+                  href="/Atchuth_Ram_Aratikatla_Resume_1Page.pdf"
+                  download="Atchuth_Ram_Aratikatla_Resume_1Page.pdf"
+                  onClick={() => setResumeDropdownOpen(false)}
+                  className="flex items-center gap-2.5 px-3.5 py-2.5 text-xs font-semibold text-[#e1dcc9] hover:text-white hover:bg-[#412d15]/60 transition-colors text-left group"
+                  role="menuitem"
+                >
+                  <FileText className="w-3.5 h-3.5 text-[#e1dcc9] group-hover:text-white shrink-0" />
+                  <span>Condensed 1-Page Resume</span>
+                </a>
+
+                <div className="border-t border-[#412d15]/80 my-1" />
+
+                <a
+                  href="/Atchuth_Ram_Aratikatla_Resume.pdf"
+                  download="Atchuth_Ram_Aratikatla_Resume.pdf"
+                  onClick={() => setResumeDropdownOpen(false)}
+                  className="flex items-center gap-2.5 px-3.5 py-2.5 text-xs font-semibold text-[#e1dcc9] hover:text-white hover:bg-[#412d15]/60 transition-colors text-left group"
+                  role="menuitem"
+                >
+                  <FileText className="w-3.5 h-3.5 text-[#e1dcc9] group-hover:text-white shrink-0" />
+                  <span>Full 2-Page Resume</span>
+                </a>
+              </div>
+            )}
+          </div>
 
           <a
             href="#contact"
@@ -125,14 +178,26 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
           </div>
 
           <div className="pt-3 border-t border-[#412d15] flex flex-col gap-2">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#a89f91] px-1">
+              Download Resume:
+            </span>
             <a
-              href="/Atchuth_Ram_Aratikatla_Master_Resume.pdf"
-              download="Atchuth_Ram_Aratikatla_Master_Resume.pdf"
+              href="/Atchuth_Ram_Aratikatla_Resume_1Page.pdf"
+              download="Atchuth_Ram_Aratikatla_Resume_1Page.pdf"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-2 py-2 text-sm font-semibold text-[#e1dcc9] bg-[#1f150c] border border-[#412d15] rounded-lg hover:bg-[#2a1d11] transition-colors"
+              className="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-[#e1dcc9] bg-[#1f150c] border border-[#412d15] rounded-lg hover:bg-[#2a1d11] transition-colors"
             >
-              <FileText className="w-4 h-4 text-[#e1dcc9]" />
-              Download Master Resume
+              <FileText className="w-3.5 h-3.5 text-[#e1dcc9]" />
+              Condensed 1-Page Resume
+            </a>
+            <a
+              href="/Atchuth_Ram_Aratikatla_Resume.pdf"
+              download="Atchuth_Ram_Aratikatla_Resume.pdf"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-[#e1dcc9] bg-[#1f150c] border border-[#412d15] rounded-lg hover:bg-[#2a1d11] transition-colors"
+            >
+              <FileText className="w-3.5 h-3.5 text-[#e1dcc9]" />
+              Full 2-Page Resume
             </a>
             <a
               href="#contact"
@@ -140,7 +205,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                 setMobileMenuOpen(false);
                 if (onOpenContact) onOpenContact();
               }}
-              className="flex items-center justify-center gap-2 py-2 text-sm font-semibold text-[#000000] bg-gradient-to-r from-[#e1dcc9] to-[#f2eee3] rounded-lg shadow-md"
+              className="flex items-center justify-center gap-2 py-2 mt-1 text-sm font-semibold text-[#000000] bg-gradient-to-r from-[#e1dcc9] to-[#f2eee3] rounded-lg shadow-md"
             >
               <Send className="w-4 h-4 text-[#000000]" />
               Get in Touch
