@@ -4,8 +4,6 @@ import DigitalRainCurtain from './originkit/DigitalRainCurtain';
 import FocusReveal from './originkit/FocusReveal';
 import OrbitBorderButton from './originkit/OrbitBorderButton';
 import EncryptButton from './originkit/EncryptButton';
-import { MarbleSprite } from './originkit/MarbleSprite';
-import { ShieldCheck, Award, ArrowRight, FileDown, CheckCircle2, TrendingUp, Layers } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   return (
@@ -45,120 +43,81 @@ export const Hero: React.FC = () => {
 
       {/* Hero Content */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Side: Executive Typography & CTAs */}
-          <div className="md:col-span-7 flex flex-col items-start text-left select-none">
-            {/* Verification Status Pill */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1f150c]/92 border border-[#412d15] backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.9),0_0_18px_rgba(0,0,0,0.85)] mb-6 hover:border-[#e1dcc9]/50 transition-colors">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#e1dcc9] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#e1dcc9]"></span>
-              </span>
-              <span className="text-xs font-semibold text-[#e1dcc9]">
-                PMP® Certified · Project Management Institute (Credly ID: 3823773)
-              </span>
-            </div>
-
-            {/* Candidate Title & Subtitle */}
-            <div className="text-left mb-3">
-              <p className="text-sm sm:text-base md:text-lg font-extrabold uppercase tracking-widest text-[#e1dcc9] mb-2 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
-                Executive Technical Project Manager · Operations & Delivery
-              </p>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-4 leading-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
-                {CANDIDATE.name}
-              </h1>
-            </div>
-
-            {/* FocusReveal Tagline Animation */}
-            <div className="mb-6 w-full">
-              <FocusReveal
-                text="Architecting High-Throughput Delivery, Operational Rigor & Enterprise Governance."
-                as="h2"
-                blur={14}
-                className="text-lg sm:text-xl md:text-2xl font-medium text-[#e1dcc9] text-left leading-relaxed"
-              />
-            </div>
-
-            {/* Executive Summary Narrative */}
-            <p className="max-w-2xl text-sm sm:text-base text-[#c5beab] mb-8 text-left leading-relaxed font-normal drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-              {CANDIDATE.hero.subheadline}
-            </p>
-
-            {/* Primary & Secondary Call to Actions */}
-            <div className="relative z-20 flex flex-wrap items-center justify-start gap-4 sm:gap-5 mb-4 pointer-events-auto">
-              {/* Primary Action: Master Resume with OrbitBorderButton */}
-              <a
-                href={CANDIDATE.contact.resumeDownloadUrl}
-                download="Atchuth_Ram_Aratikatla_Master_Resume.pdf"
-                className="inline-block"
-                title="Download Master Resume (PDF)"
-              >
-                <OrbitBorderButton
-                  label="Master Resume"
-                  fill="#1f150c"
-                  textColor="#e1dcc9"
-                  cometColor="#e1dcc9"
-                  glowColor="#412d15"
-                  width={220}
-                  height={50}
-                  style={{ fontWeight: 600, fontSize: '14px' }}
-                />
-              </a>
-
-              {/* Secondary Action: Explore Strategic Case Studies with EncryptButton */}
-              <a href="#case-studies" className="inline-block" title="Explore Strategic Case Studies">
-                <EncryptButton
-                  label="Explore Strategic Case Studies"
-                  fill="#1f150c"
-                  textColor="#e1dcc9"
-                  hoverTextColor="#ffffff"
-                  paddingX={24}
-                  paddingY={13}
-                  rounded={12}
-                  border={true}
-                  borderOptions={{ color: '#412d15', width: 1 }}
-                  sweepOptions={{ color: '#e1dcc9', speed: 8, count: 2, width: 12 }}
-                  font={{ fontSize: 14, fontWeight: 600 }}
-                />
-              </a>
-            </div>
+        {/* Centered Executive Typography & CTAs */}
+        <div className="max-w-4xl mx-auto flex flex-col items-center text-center select-none mb-12">
+          {/* Verification Status Pill */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1f150c]/92 border border-[#412d15] backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.9),0_0_18px_rgba(0,0,0,0.85)] mb-6 hover:border-[#e1dcc9]/50 transition-colors">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#e1dcc9] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#e1dcc9]"></span>
+            </span>
+            <span className="text-xs font-semibold text-[#e1dcc9]">
+              PMP® Certified · Project Management Institute (Credly ID: 3823773)
+            </span>
           </div>
 
-          {/* Right Side: Free-Floating Interactive MarbleSprite in Executive Theme Colors */}
-          <div className="md:col-span-5 flex items-center justify-center relative w-full h-[380px] sm:h-[460px] lg:h-[520px] pointer-events-auto select-none">
-            {/* Subtle organic ambient radial warmth behind the floating capsule (no box, no borders) */}
-            <div
-              className="absolute w-[280px] sm:w-[360px] lg:w-[420px] h-[280px] sm:h-[360px] lg:h-[420px] rounded-full pointer-events-none opacity-40 blur-3xl -z-1"
-              style={{
-                background: 'radial-gradient(circle, rgba(65,45,21,0.3) 0%, rgba(31,21,12,0.18) 45%, transparent 70%)',
-              }}
-            />
+          {/* Candidate Title & Subtitle */}
+          <div className="text-center mb-3">
+            <p className="text-sm sm:text-base md:text-lg font-extrabold uppercase tracking-widest text-[#e1dcc9] mb-2 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+              Executive Technical Project Manager · Operations & Delivery
+            </p>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-4 leading-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
+              {CANDIDATE.name}
+            </h1>
+          </div>
 
-            {/* Free-floating capsule container with soft circular drop-shadow */}
-            <div
-              className="relative w-full h-full max-w-[480px] flex items-center justify-center transition-transform duration-500"
-              style={{
-                filter: 'drop-shadow(0 25px 45px rgba(0,0,0,0.95)) drop-shadow(0 0 25px rgba(65,45,21,0.25))',
-              }}
+          {/* FocusReveal Tagline Animation */}
+          <div className="mb-6 w-full flex justify-center">
+            <FocusReveal
+              text="Architecting High-Throughput Delivery, Operational Rigor & Enterprise Governance."
+              as="h2"
+              blur={14}
+              className="text-lg sm:text-xl md:text-2xl font-medium text-[#e1dcc9] text-center leading-relaxed"
+            />
+          </div>
+
+          {/* Executive Summary Narrative */}
+          <p className="max-w-2xl text-sm sm:text-base text-[#c5beab] mb-8 text-center mx-auto leading-relaxed font-normal drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+            {CANDIDATE.hero.subheadline}
+          </p>
+
+          {/* Primary & Secondary Call to Actions */}
+          <div className="relative z-20 flex flex-wrap items-center justify-center gap-4 sm:gap-5 mb-4 pointer-events-auto">
+            {/* Primary Action: Master Resume with OrbitBorderButton */}
+            <a
+              href={CANDIDATE.contact.resumeDownloadUrl}
+              download="Atchuth_Ram_Aratikatla_Master_Resume.pdf"
+              className="inline-block"
+              title="Download Master Resume (PDF)"
             >
-              <MarbleSprite
-                spriteColor="#6e4d25"
-                background="transparent"
-                scale={95}
-                frost={4.5}
-                follow="page"
-                reach={10}
-                lean={14}
-                blink={10}
-                float={22}
-                advanced={{
-                  eyeColor: '#e1dcc9',
-                  glow: 110,
-                  gloss: 105,
-                }}
-                className="w-full h-full"
+              <OrbitBorderButton
+                label="Master Resume"
+                fill="#1f150c"
+                textColor="#e1dcc9"
+                cometColor="#e1dcc9"
+                glowColor="#412d15"
+                width={220}
+                height={50}
+                style={{ fontWeight: 600, fontSize: '14px' }}
               />
-            </div>
+            </a>
+
+            {/* Secondary Action: Explore Strategic Case Studies with EncryptButton */}
+            <a href="#case-studies" className="inline-block" title="Explore Strategic Case Studies">
+              <EncryptButton
+                label="Explore Strategic Case Studies"
+                fill="#1f150c"
+                textColor="#e1dcc9"
+                hoverTextColor="#ffffff"
+                paddingX={24}
+                paddingY={13}
+                rounded={12}
+                border={true}
+                borderOptions={{ color: '#412d15', width: 1 }}
+                sweepOptions={{ color: '#e1dcc9', speed: 8, count: 2, width: 12 }}
+                font={{ fontSize: 14, fontWeight: 600 }}
+              />
+            </a>
           </div>
         </div>
 
